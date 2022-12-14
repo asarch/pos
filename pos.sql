@@ -1,0 +1,52 @@
+CREATE TABLE rol (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT
+);
+
+CREATE TABLE usuario (
+	id INTEGER PRIMARY KEY,
+	apodo TEXT,
+	nombre TEXT,
+	apellido_paterno TEXT,
+	apellido_materno TEXT,
+	rol_id INTEGER REFERENCES rol(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	password TEXT
+);
+
+CREATE TABLE categoria (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT
+);
+
+CREATE TABLE marca (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT
+);
+
+CREATE TABLE inventario (
+	id INTEGER PRIMARY KEY,
+	producto_id INTEGER REFERENCES producto(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	cantidad INTEGER
+);
+
+CREATE TABLE producto (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT,
+	marca_id INTEGER REFERENCES marca(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	precio NUMERIC,
+	descripcion BLOB,
+	categoria_id INTEGER REFERENCES categoria(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE producto_venta (
+	id INTEGER PRIMARY KEY,
+	producto_id INTEGER REFERENCES producto(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	venta_id INTEGER REFERENCES venta(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE venta (
+	id INTEGER PRIMARY KEY,
+	total NUMERIC,
+	fecha DATE,
+	usuario_id INTEGER REFERENCES usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
+);

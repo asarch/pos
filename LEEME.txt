@@ -1,0 +1,23 @@
+NOTA
+
+- Hay dos tipos de objetos:
+
+	- Los objetos de las bases de datos (sqlobject)
+
+	- Los objetos que representan cada uno de los dialogos (GTK+)
+
+- Al separar cada objeto en su archivo, el archivo principal es mas legible.
+
+- Los objetos de sqlobject estan en el archivo "databases.py".
+
+- Este archivo de databases.py se usa por separado en cada archivo de los objetos de GTK+
+  llamando unicamente las clases que representan las tablas usadas por ese objeto GTK+.
+
+- El archivo principal ahora se llama "main.py" (antes era "pos.py").
+
+- Los objetos por el momento estan "desbaratados" (cada uno hace una cosa por su lado).
+
+- Lo unico que falta es unir la logica entre los objetos de las bases de datos con los de GTK+.
+
+- Leyendo el manual de Dancer, lo que nos falta es crear una sesion para poder loggearnos a la
+  aplicacion.
